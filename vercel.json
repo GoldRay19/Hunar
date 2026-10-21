@@ -5,19 +5,11 @@
   "framework": "nodejs",
   "installCommand": "npm install",
   "env": {
-    "CLERK_PUBLISHABLE_KEY": {
-      "type": "secret"
-    },
-    "CLERK_SECRET_KEY": {
-      "type": "secret"
-    },
-    "JWT_SECRET": {
-      "type": "secret"
-    },
+    "CLERK_PUBLISHABLE_KEY": "YOUR_CLERK_PUBLISHABLE_KEY",
+    "CLERK_SECRET_KEY": "YOUR_CLERK_SECRET_KEY",
+    "JWT_SECRET": "YOUR_JWT_SECRET",
     "PORT": "3000",
-    "FRONTEND_URL": {
-      "type": "secret"
-    },
+    "FRONTEND_URL": "YOUR_FRONTEND_URL",
     "DB_PATH": "./hunar.db"
   }
 }
