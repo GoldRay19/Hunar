@@ -2585,7 +2585,12 @@ async function initApp() {
   `;
 
   try {
-    const config = await fetch('/api/config').then(r => r.json());
+    // Try to fetch config from API (may not be available on static hosting)
+    let config = { clerkEnabled: false };
+    try {
+      const res = await fetch('/api/config');
+      if (res.ok) config = await res.json();
+    } catch (e) { /* API not available, use localStorage mode */ }
 
     // Check if already logged in via JWT
     const token = localStorage.getItem('hunar_token');
@@ -2595,13 +2600,11 @@ async function initApp() {
         if (user) {
           window._currentUser = user;
           HUNAR.Data.setCurrentUser(user);
-          // Fetch challenges from API
+          // Load challenges from API if available
           try {
             const challenges = await HUNAR.API.getChallenges();
-            if (challenges && challenges.length > 0) {
-              HUNAR.Data.setChallenges(challenges);
-            }
-          } catch (e) { console.warn('Failed to load challenges:', e); }
+            if (challenges && challenges.length > 0) HUNAR.Data.setChallenges(challenges);
+          } catch (e) { /* use localStorage */ }
           HUNAR.App.init();
           const currentRole = HUNAR.Data.getCurrentRole();
           const currentRoute = window.location.hash.slice(1);
@@ -2621,7 +2624,9 @@ async function initApp() {
 
   } catch (e) {
     console.error('App init failed:', e);
-    app.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;min-height:100vh;flex-direction:column;gap:1rem;padding:2rem;"><h2>Failed to connect to server. Is it running?</h2><button onclick="location.reload()" style="padding:0.75rem 2rem;background:#059669;color:white;border:none;border-radius:8px;cursor:pointer;">Retry</button></div>`;
+    // Fallback to localStorage mode
+    showLandingPage();
+    return;
   }
 }
 
