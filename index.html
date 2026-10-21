@@ -7,26 +7,50 @@
   <meta name="theme-color" content="#059669">
   <title>Project HUNAR — Beyond Marks, Beyond Barriers</title>
 
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='20' width='100' height='100' fill='%23059669'/><text x='50' y='68' font-size='55' font-weight='900' text-anchor='middle' fill='white' font-family='sans-serif'>H</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='20' width='100' height='100' fill='%23059669'/><text x='50' y='68' font-size='55' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-weight='700'>H</text></svg>">
 
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/dark.css">
-   <link rel="stylesheet" href="css/hub.css">
+  <link rel="stylesheet" href="css/hub.css">
+  <link rel="stylesheet" href="css/ui-update.css">
 </head>
 <body>
   <a href="#page-content" class="skip-link">Skip to main content</a>
 
   <div id="app" role="application" aria-label="Project HUNAR Application">
-    <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;flex-direction:column;gap:1.5rem;background:var(--bg-app, #f8fafc);padding:2rem;">
-      <div style="width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,#10b981,#059669);display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:900;color:white;font-family:Inter,sans-serif;">H</div>
-      <h1 style="font-family:Inter,sans-serif;color:#1e293b;font-size:2rem;margin:0;">Project HUNAR</h1>
-      <p style="color:#64748b;font-size:1rem;margin:0;">Beyond Marks. Beyond Barriers.</p>
-      <div style="display:flex;gap:1rem;margin-top:1rem;">
-        <button id="btn-signin" style="padding:0.75rem 2rem;background:linear-gradient(135deg,#10b981,#059669);color:white;border:none;border-radius:8px;font-size:1rem;font-weight:600;cursor:pointer;">Sign In</button>
-        <button id="btn-signup" style="padding:0.75rem 2rem;background:white;color:#059669;border:2px solid #059669;border-radius:8px;font-size:1rem;font-weight:600;cursor:pointer;">Sign Up</button>
-        <button id="btn-learning" style="padding:0.75rem 2rem;background:linear-gradient(135deg,#10b981,#059669);color:white;border:none;border-radius:8px;font-size:1rem;font-weight:600;cursor:pointer;margin-left:0.5rem;" onclick="HUNAR.Router.navigate('/learning')">Learning Hub</button>
+    <div class="hunar-loading-shell">
+      <div class="brand-row">
+        <div class="brand-icon">H</div>
+        <div class="brand-copy">
+          <span class="eyebrow">PROJECT HUNAR</span>
+          <h1>Beyond Marks. Beyond Barriers.</h1>
+        </div>
       </div>
-      <div id="clerk-status" style="color:#64748b;font-size:0.875rem;margin-top:1rem;">Loading...</div>
+
+      <div class="loading-card">
+        <div class="loading-visual">
+          <div class="orb orb-one"></div>
+          <div class="orb orb-two"></div>
+          <div class="pulse-ring"></div>
+        </div>
+
+        <div class="loading-content">
+          <p class="status-label">Skill discovery studio</p>
+          <h2>Preparing your learning dashboard</h2>
+          <p class="status-copy">Curating challenges, achievements, and evidence-backed portfolios for real-world growth.</p>
+        </div>
+
+        <div class="status-row">
+          <span class="status-dot"></span>
+          <span id="clerk-status">Loading...</span>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <button id="btn-signin" class="btn btn-primary btn-lg">Sign In</button>
+        <button id="btn-signup" class="btn btn-secondary btn-lg">Sign Up</button>
+        <button id="btn-learning" class="btn btn-ghost btn-lg">Explore Learning</button>
+      </div>
     </div>
   </div>
 
