@@ -412,6 +412,9 @@ function renderAppShell(contentHtml, pageTitle = '', breadcrumbs = []) {
     <button class="sidebar-link" data-route="/dashboard" onclick="HUNAR.Router.navigate('/dashboard')">
       <span class="icon">${HUNAR.Icons.dashboard}</span> Dashboard
     </button>
+    <button class="sidebar-link" data-route="/notifications" onclick="HUNAR.Router.navigate('/notifications')">
+      <span class="sidebar-icon">🔔</span> Notifications
+    </button>
     <button class="sidebar-link" data-route="/about" onclick="HUNAR.Router.navigate('/about')">
       <span class="sidebar-icon">ℹ️</span> About
     </button>
@@ -2212,6 +2215,22 @@ HUNAR.Views.help = function () {
 
 HUNAR.Router.register('/about', HUNAR.Views.about);
 HUNAR.Router.register('/faq', HUNAR.Views.faq);
+HUNAR.Views.notifications = function () {
+  const notifs = (typeof HUNAR !== 'undefined' && HUNAR.Data) ? HUNAR.Data.getNotifications() : [];
+  let html = '<div class="page-header"><h1>Notifications</h1><p class="subtitle">Stay updated with your activity</p></div>';
+  if (!notifs || notifs.length === 0) {
+    html += '<div class="empty-state"><div class="empty-state-icon">🔔</div><h3>No notifications</h3><p>You are all caught up!</p></div>';
+  } else {
+    html += '<div class="section-card"><div class="section-card-body">';
+    notifs.forEach(n => {
+      html += '<div style="padding:1rem;border-bottom:1px solid #f1f5f9;display:flex;gap:0.75rem;"><div style="font-size:1.25rem;">📌</div><div><div style="color:#0f172a;font-weight:600;">' + HUNAR.Utils.escapeHtml(n.message || '') + '</div><div style="color:#94a3b8;font-size:0.8rem;margin-top:0.25rem;">' + (n.date || '') + '</div></div></div>';
+    });
+    html += '</div></div>';
+  }
+  renderAppShell(html, 'Notifications');
+};
+
+HUNAR.Router.register('/notifications', HUNAR.Views.notifications);
 HUNAR.Router.register('/help', HUNAR.Views.help);
 
 HUNAR.Router.register('/learning', HUNAR.Views.learning);
