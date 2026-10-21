@@ -1,0 +1,23 @@
+{
+  "buildCommand": "echo 'No build step - static + Node server'",
+  "outputDirectory": ".",
+  "devCommand": "node server/index.js",
+  "framework": "nodejs",
+  "installCommand": "npm install",
+  "env": {
+    "CLERK_PUBLISHABLE_KEY": {
+      "type": "secret"
+    },
+    "CLERK_SECRET_KEY": {
+      "type": "secret"
+    },
+    "JWT_SECRET": {
+      "type": "secret"
+    },
+    "PORT": "3000",
+    "FRONTEND_URL": {
+      "type": "secret"
+    },
+    "DB_PATH": "./hunar.db"
+  }
+}
