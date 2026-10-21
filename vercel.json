@@ -27,6 +27,5 @@
     "PORT": "3000",
     "FRONTEND_URL": "YOUR_FRONTEND_URL",
     "DB_PATH": "./hunar.db"
-  },
-  "framework": "none"
+  }
 }
