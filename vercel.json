@@ -2,7 +2,7 @@
   "buildCommand": "echo 'No build step - static + Node server'",
   "outputDirectory": ".",
   "devCommand": "node server/index.js",
-  "framework": "nodejs",
+
   "installCommand": "npm install",
   "env": {
     "CLERK_PUBLISHABLE_KEY": "YOUR_CLERK_PUBLISHABLE_KEY",
