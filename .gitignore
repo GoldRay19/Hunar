@@ -1,0 +1,5 @@
+﻿node_modules/
+hunar.db
+hunar.db-wal
+hunar.db-shm
+.env

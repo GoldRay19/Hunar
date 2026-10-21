@@ -1,0 +1,14 @@
+﻿/* Dark mode toggle */
+[data-theme="dark"] {
+  --bg-app: var(--slate-950);
+  --bg-surface: var(--slate-800);
+  --bg-surface-hover: var(--slate-700);
+  --bg-sidebar: var(--slate-950);
+  --text-primary: var(--slate-100);
+  --text-secondary: var(--slate-400);
+  --text-muted: var(--slate-500);
+  --border-default: var(--slate-700);
+  --border-hover: var(--slate-600);
+  --border-focus: var(--green-500);
+  --bg-overlay: rgba(2, 6, 23, 0.8);
+}
