@@ -518,7 +518,7 @@ function renderAppShell(contentHtml, pageTitle = '', breadcrumbs = []) {
               <span class="search-icon">${HUNAR.Icons.search}</span>
               <input type="search" placeholder="Search challenges, skills..." id="global-search" aria-label="Search">
             </div>
-            <button class="btn btn-icon btn-ghost" id="theme-toggle-btn" aria-label="Toggle dark mode" onclick="HUNAR.App.toggleTheme()">
+            <button class="btn btn-icon btn-ghost" id="theme-toggle-btn" aria-label="Toggle dark mode" onclick="HUNAR.App && HUNAR.App.toggleTheme ? HUNAR.App.toggleTheme() : document.documentElement.toggleAttribute('data-theme', document.documentElement.getAttribute('data-theme') === 'dark' ? false : true); localStorage.setItem('hunar_theme', document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'); this.textContent = document.documentElement.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙';">
               🌙
             </button>
             <button class="btn btn-icon btn-ghost" id="notifications-btn" aria-label="View notifications" style="position:relative;">
@@ -2503,11 +2503,17 @@ handleEditSubmission(e) {
 
   toggleTheme() {
     const current = document.documentElement.getAttribute('data-theme');
-    const next = current === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('hunar_theme', next);
-    const btn = document.getElementById('theme-toggle-btn');
-    if (btn) btn.textContent = next === 'dark' ? '☀️' : '🌙';
+    if (current === 'dark') {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('hunar_theme', 'light');
+      const btn = document.getElementById('theme-toggle-btn');
+      if (btn) btn.textContent = '🌙';
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('hunar_theme', 'dark');
+      const btn = document.getElementById('theme-toggle-btn');
+      if (btn) btn.textContent = '☀️';
+    }
   },
 
   handleFileSelect(files) {
